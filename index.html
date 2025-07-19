@@ -3,32 +3,490 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SomnoSynth Stories</title>
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
+  <title>SomnoSynth Stories - AI-Generated Sleep Stories</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    body { margin: 0; padding: 0; min-height: 100vh; font-family: 'Montserrat', Arial, sans-serif; background: #f4f6fa; color: #222; display: flex; flex-direction: column; justify-content: center; align-items: center; }
-    .container { text-align: center; padding: 2rem; }
-    h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem; letter-spacing: 1px; }
-    p { font-size: 1.2rem; color: #666; margin-bottom: 2rem; }
-    .contact-btn { display: inline-block; padding: 0.75rem 2rem; font-size: 1rem; border: none; border-radius: 25px; background: #222; color: #fff; cursor: pointer; transition: background 0.2s; margin-bottom: 2rem; text-decoration: none; }
-    .contact-btn:hover { background: #444; }
-    .socials { display: flex; justify-content: center; gap: 1.2rem; margin-top: 1rem; }
-    .social-btn { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: #eee; color: #222; text-decoration: none; font-size: 1.3rem; transition: background 0.2s, color 0.2s; }
-    .social-btn:hover { background: #222; color: #fff; }
-    @media (max-width: 600px) { h1 { font-size: 2rem; } .container { padding: 1rem; } }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+      color: #ffffff;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    header {
+      text-align: center;
+      padding: 4rem 0 2rem;
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      background: linear-gradient(45deg, #a8e6cf, #dcedc1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .tagline {
+      font-size: 1.3rem;
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 2rem;
+    }
+
+    .concept-explanation {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 2rem;
+      border-radius: 12px;
+      margin: 2rem 0;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(168, 230, 207, 0.3);
+    }
+
+    .concept-explanation h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      color: #a8e6cf;
+    }
+
+    .concept-explanation p {
+      font-size: 1.1rem;
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 1rem;
+    }
+
+    .features {
+      padding: 4rem 0;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      text-align: center;
+      margin-bottom: 3rem;
+      color: #a8e6cf;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-bottom: 4rem;
+    }
+
+    .feature-card {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 2rem;
+      border-radius: 12px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(168, 230, 207, 0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(168, 230, 207, 0.2);
+    }
+
+    .feature-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .feature-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: #a8e6cf;
+      font-weight: 600;
+    }
+
+    .feature-card p {
+      color: rgba(255, 255, 255, 0.9);
+      line-height: 1.6;
+    }
+
+    .stories {
+      padding: 4rem 0;
+      background: rgba(168, 230, 207, 0.05);
+      margin: 2rem 0;
+      border-radius: 12px;
+    }
+
+    .stories-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+    }
+
+    .story-card {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 2rem;
+      border-radius: 12px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(168, 230, 207, 0.3);
+      transition: transform 0.3s ease;
+    }
+
+    .story-card:hover {
+      transform: translateY(-3px);
+    }
+
+    .story-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .story-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+      color: #a8e6cf;
+    }
+
+    .story-desc {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .story-duration {
+      color: rgba(168, 230, 207, 0.7);
+      font-size: 0.9rem;
+    }
+
+    .somno-synth {
+      padding: 4rem 0;
+      text-align: center;
+    }
+
+    .synth-placeholder {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 4rem 2rem;
+      border-radius: 12px;
+      margin: 2rem 0;
+      backdrop-filter: blur(10px);
+      border: 2px dashed rgba(168, 230, 207, 0.3);
+    }
+
+    .synth-placeholder h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      color: #a8e6cf;
+    }
+
+    .synth-placeholder p {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+    }
+
+    .synth-character {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+
+    .synth-dot {
+      width: 15px;
+      height: 15px;
+      background: #a8e6cf;
+      border-radius: 50%;
+      animation: gentle-pulse 3s ease-in-out infinite;
+    }
+
+    .synth-dot:nth-child(2n) {
+      background: #dcedc1;
+      animation-delay: 1s;
+    }
+
+    .synth-dot:nth-child(3n) {
+      background: #ffd3b6;
+      animation-delay: 2s;
+    }
+
+    @keyframes gentle-pulse {
+      0%, 100% { opacity: 0.6; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.2); }
+    }
+
+    .newsletter {
+      padding: 4rem 0;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      margin: 2rem 0;
+      backdrop-filter: blur(10px);
+    }
+
+    .newsletter h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: #a8e6cf;
+    }
+
+    .newsletter p {
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 2rem;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .newsletter-form {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .newsletter-input {
+      padding: 1rem;
+      border: 2px solid rgba(168, 230, 207, 0.3);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.1);
+      color: #ffffff;
+      font-size: 1rem;
+      flex: 1;
+      min-width: 250px;
+    }
+
+    .newsletter-input::placeholder {
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .btn {
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-primary {
+      background: linear-gradient(45deg, #a8e6cf, #dcedc1);
+      color: #1a1a2e;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(168, 230, 207, 0.3);
+    }
+
+    footer {
+      padding: 3rem 0;
+      text-align: center;
+      border-top: 1px solid rgba(168, 230, 207, 0.2);
+      margin-top: 4rem;
+    }
+
+    .footer-content {
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .social-link {
+      color: #a8e6cf;
+      font-size: 1.5rem;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .social-link:hover {
+      color: #dcedc1;
+    }
+
+    @media (max-width: 768px) {
+      .logo {
+        font-size: 2rem;
+      }
+      
+      .tagline {
+        font-size: 1.1rem;
+      }
+      
+      .newsletter-form {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .newsletter-input {
+        width: 100%;
+        max-width: 300px;
+      }
+    }
   </style>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🌙</text></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%231a1a2e'/><circle cx='50' cy='50' r='35' fill='%23a8e6cf'/><circle cx='50' cy='50' r='25' fill='%231a1a2e'/><circle cx='50' cy='50' r='15' fill='%23dcedc1'/><circle cx='50' cy='50' r='5' fill='%231a1a2e'/></svg>">
 </head>
 <body>
   <div class="container">
-    <h1>SomnoSynth Stories</h1>
-    <p>Dreams, synthesized.</p>
-    <a href="#" class="contact-btn">Contact</a>
-    <div class="socials">
-      <a href="#" class="social-btn" title="Instagram" aria-label="Instagram">I</a>
-      <a href="#" class="social-btn" title="Facebook" aria-label="Facebook">F</a>
-      <a href="#" class="social-btn" title="Twitter" aria-label="Twitter">T</a>
+    <header>
+      <h1 class="logo">SomnoSynth Stories</h1>
+      <p class="tagline">AI-generated stories that gently guide you to sleep</p>
+    </header>
+
+    <div class="concept-explanation">
+      <h2>🌙 The Somno Synth & The Slumberverse</h2>
+      <p>Meet the Somno Synth, a special digital being who protects The Slumberverse - a universe of sleep and dreams. Through gentle, AI-generated stories, the Somno Synth creates narratives that are engaging enough to capture your attention, but designed to trail off naturally without dramatic climaxes or high-intensity moments.</p>
+      <p>Each story is crafted to be comfortable and soothing, helping you drift into peaceful sleep while exploring the magical realms of The Slumberverse. The Somno Synth ensures every tale is both entertaining and sleep-inducing.</p>
     </div>
+
+    <section class="features">
+      <h2 class="section-title">How SomnoSynth Works</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">🤖</div>
+          <h3>AI-Generated Stories</h3>
+          <p>Each story is uniquely crafted by AI to be engaging yet gentle, with no dramatic climaxes or intense moments that might keep you awake.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">🌙</div>
+          <h3>Natural Trail-Offs</h3>
+          <p>Stories are designed to gradually become more peaceful and fade naturally, helping you drift into sleep without abrupt endings.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">🛡️</div>
+          <h3>The Somno Synth</h3>
+          <p>A digital guardian who protects The Slumberverse and ensures every story is perfectly crafted for peaceful sleep.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">🌌</div>
+          <h3>The Slumberverse</h3>
+          <p>Explore a universe of sleep and dreams through gentle narratives that transport you to peaceful, dreamlike realms.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">🎧</div>
+          <h3>Sleep-Optimized</h3>
+          <p>Stories are designed with sleep science in mind, using calming language and gentle pacing to promote restful sleep.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">✨</div>
+          <h3>Personalized Experience</h3>
+          <p>The Somno Synth learns your preferences and creates stories tailored to your sleep patterns and comfort levels.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="stories">
+      <h2 class="section-title">Sample Stories from The Slumberverse</h2>
+      <div class="stories-grid">
+        <div class="story-card">
+          <div class="story-icon">🏰</div>
+          <h3 class="story-title">The Floating Library</h3>
+          <p class="story-desc">A gentle tale about a library that floats among the clouds, where books whisper stories to the wind and knowledge drifts like soft mist...</p>
+          <div class="story-duration">15 min • Gentle Fantasy</div>
+        </div>
+        
+        <div class="story-card">
+          <div class="story-icon">🌿</div>
+          <h3 class="story-title">The Garden of Whispering Trees</h3>
+          <p class="story-desc">Follow the journey of a caretaker who tends to trees that speak in hushed tones, sharing ancient wisdom with those who listen...</p>
+          <div class="story-duration">12 min • Nature Meditation</div>
+        </div>
+        
+        <div class="story-card">
+          <div class="story-icon">🌊</div>
+          <h3 class="story-title">The Ocean's Lullaby</h3>
+          <p class="story-desc">A peaceful story about a lighthouse keeper who learns to understand the ocean's gentle rhythms and calming melodies...</p>
+          <div class="story-duration">18 min • Ocean Serenity</div>
+        </div>
+        
+        <div class="story-card">
+          <div class="story-icon">⭐</div>
+          <h3 class="story-title">The Starlight Baker</h3>
+          <p class="story-desc">A cozy tale about a baker who uses starlight in their recipes, creating treats that taste like dreams and memories...</p>
+          <div class="story-duration">14 min • Cozy Fantasy</div>
+        </div>
+        
+        <div class="story-card">
+          <div class="story-icon">🎭</div>
+          <h3 class="story-title">The Dream Theater</h3>
+          <p class="story-desc">Explore a theater where dreams are performed as plays, and the audience drifts between reality and imagination...</p>
+          <div class="story-duration">16 min • Dreamlike Journey</div>
+        </div>
+        
+        <div class="story-card">
+          <div class="story-icon">🍃</div>
+          <h3 class="story-title">The Wind's Story</h3>
+          <p class="story-desc">A gentle narrative about the wind as it travels across the world, carrying stories and secrets from place to place...</p>
+          <div class="story-duration">13 min • Nature's Voice</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="somno-synth">
+      <h2 class="section-title">Meet The Somno Synth</h2>
+      <div class="synth-placeholder">
+        <h3>Guardian of The Slumberverse</h3>
+        <p>The Somno Synth is a digital being created to protect and nurture the realm of sleep and dreams. Through gentle AI-generated stories, it guides listeners into peaceful slumber while exploring the magical corners of The Slumberverse.</p>
+        <div class="synth-character">
+          <div class="synth-dot"></div>
+          <div class="synth-dot"></div>
+          <div class="synth-dot"></div>
+          <div class="synth-dot"></div>
+          <div class="synth-dot"></div>
+          <div class="synth-dot"></div>
+          <div class="synth-dot"></div>
+          <div class="synth-dot"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="newsletter">
+      <h3>Join The Slumberverse</h3>
+      <p>Subscribe to receive new sleep stories from the Somno Synth and explore the peaceful realms of The Slumberverse. Let gentle narratives guide you to restful sleep. 🌙</p>
+      <form class="newsletter-form">
+        <input type="email" class="newsletter-input" placeholder="Enter your email for sleep stories" required>
+        <button type="submit" class="btn btn-primary">Start Sleeping</button>
+      </form>
+    </section>
+
+    <footer>
+      <div class="footer-content">
+        <p>&copy; 2024 SomnoSynth Stories. Guided by the Somno Synth, protected by The Slumberverse.</p>
+        <p>🌙 Gentle stories for peaceful sleep, crafted by AI, guided by dreams 🌙</p>
+        <div class="social-links">
+          <a href="#" class="social-link">📱</a>
+          <a href="#" class="social-link">🐦</a>
+          <a href="#" class="social-link">📸</a>
+          <a href="#" class="social-link">🎧</a>
+        </div>
+      </div>
+    </footer>
   </div>
 </body>
 </html> 
